@@ -20,13 +20,13 @@ La parte local y la parte de dominio pueden contener letras, números y los cara
 La parte del dominio debe terminar con un símbolo "." y entre dos y cuatro caracteres alfabéticos.
 "/^(?=.{1,256}$)([A-ZÑa-zñ0-9][A-ZÑa-zñ0-9_.-]{0,62}[A-ZÑa-zñ0-9])@([A-ZÑa-zñ0-9][A-ZÑa-zñ0-9.-]{1,252}[A-ZÑa-zñ0-9]\.[A-Za-z]{2,4})$/"
  */
+$errores = [];
 
-function cCorreo($correo){
-    $errores = [];
+function cCorreo($correo, &$errores){
     $patron = "/^(?=.{1,256}$)([A-ZÑa-zñ0-9][A-ZÑa-zñ0-9_.-]{0,62}[A-ZÑa-zñ0-9])@([A-ZÑa-zñ0-9][A-ZÑa-zñ0-9.-]{1,252}[A-ZÑa-zñ0-9]\.[A-Za-z]{2,4})$/";
     $temp = "";
     $correoValido = false;
-    if(isset($_REQUEST [$correo]) && !empty($_REQUEST[$correo])){
+    if(isset($_REQUEST [$correo]) || trim($_REQUEST[$correo])===''){
         $temp = strip_tags($_REQUEST [$correo]); //Quitamos las etiquetas 
         $temp = sinEspaciosInermedios($temp); //Se eliminan los espacios intermedios
         $temp = trim($temp);//Sin espacios a los laterales
@@ -42,13 +42,11 @@ function cCorreo($correo){
 
  // Para la contraseña ha de ser de al menos 4 caravteres y máximo de 16
  // Puede llevar letras números y caracteres especiales excepto las < >
- function cPassword($pass){
+ function cPassword($pass, &$errores){
     $passValido = false;
     $temp = "";
-    $errores = [];
     $patron = '/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\'":\\|,\/?~]{4,16}$/';
-    if (isset($_REQUEST[$pass]) && !empty($_REQUEST[$pass])) {
-        echo $_REQUEST[$pass];
+    if (isset($_REQUEST[$pass]) || trim($_REQUEST[$pass])==='') {
         $temp = strip_tags($_REQUEST[$pass]);
         $temp = sinEspaciosInermedios($temp); //Se eliminan los espacios intermedios
         $temp = trim($temp);//Sin espacios a los laterales
