@@ -11,3 +11,5 @@
     <input type="submit" value="Enviar" name="enviarLogin">
 
 </form>
+
+<a href="../vistas/formRegistroUsuario.php">Registrarse como nuevo usuario</a>
