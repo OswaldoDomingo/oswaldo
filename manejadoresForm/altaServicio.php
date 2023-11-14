@@ -3,7 +3,7 @@
 include (__DIR__ . "/../lib/funcionesFicheros.php");
 include (__DIR__ . "/../lib/bGeneral6.php");
 include (__DIR__ . "/../lib/bRafa.php");
-$ruta = "../files/servicios.txt";
+$ruta = "../ficheros/servicios.txt";
 $errores = [];
 include (__DIR__ . "/../forms/formAltaServicio.php");
 if (isset($_POST["bGuardar"])) {
