@@ -4,7 +4,7 @@ require_once (__DIR__ . "/../libs/funcionesFicheros.php");
 require_once (__DIR__ . "/../libs/bGeneral6.php");
 require_once (__DIR__ . "/../libs/bRafa.php");
 require_once (__DIR__ . "/../libs/config.php");
-require_once (__DIR__ . "/../forms/formAltaServicio.php");
+require_once (__DIR__ . "/../vistas/formAltaServicio.php");
 
 $ruta = "../ficheros/servicios.txt";
 $rutaImagenTemporal = "";
