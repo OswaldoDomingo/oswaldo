@@ -11,7 +11,7 @@ Y el botón siguientes :
 [] Guardar- Botón de acción de guardar que deberá ejecutar el archivo altaUsuario.php. -->
 
 <h1>Alta usuario</h1>
-<form action="" method="post">
+<form action="" method="post" enctype="multipart/form-data">
     <label for="nombre">Nombre</label><br>
     <input type="text" name="nomnbreRegUser" id="nombre"><br>
     <?php echo (isset($errores['nomnbreRegUser'])) ? "$errores[nomnbreRegUser]" : "";

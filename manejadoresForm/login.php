@@ -7,25 +7,38 @@ $errores = [];
 $correoLogin = "";
 $contrasenyaLogin = "";
 
-if(!isset($_REQUEST['enviarLogin'])){ //Si no se llega desde el botón enviar se carga el formulario
-    
+// Inicializar o actualizar el contador de intentos fallidos
+if (!isset($_SESSION['intentos_fallidos'])) {
+    $_SESSION['intentos_fallidos'] = 0;
+}
+//Verificamos que viene del botón enviar del formulario
+if(!isset($_POST['enviarLogin'])) {
+    //Si no viene del formulario
     include('../vistas/formLogin.php');
+} else {
+    $correoLogin = recoge('correoLogin');
+    $contrasenyaLogin = recoge('contrasenyaLogin');
 
-}else{
-    //En este archivo se comprueba si los datos del usuario son correctos, si lo son se deberá pasar al siguiente página
-    // que es la zona privada, si no pasa se volverá a cargar el formulario.
-
-    $correoLogin =  cCorreo('correoLogin', $errores);
-    $contrasenyaLogin = cPassword('contrasenyaLogin', $errores);
-
-    if($correoLogin && $contrasenyaLogin){
-        echo "Todo válido";
+    if(usuarioValido($correoLogin, $contrasenyaLogin)) {
+        $_SESSION['usuario'] = $correoLogin;
+        $_SESSION['autenticado'] = 1;
+        $_SESSION['intentos_fallidos'] = 0; // Reiniciar los intentos fallidos
+        header("Location: pagina_privada.php");// No se donde se envía al usuario
+        exit();
     } else {
-        include('../vistas/formLogin.php');
-        print_r($errores);
+        //Si no entra porque puso algo mal
+        $_SESSION['intentos_fallidos']++;//Se suma el intento y se registra en el log
+        file_put_contents("../ficheros/logLogin.txt", "$correoLogin; " . date("Y-m-d H:i:s") . "\n", FILE_APPEND);
+        
+        if ($_SESSION['intentos_fallidos'] >= 3) {
+            // Redirigir al formulario de registro tras 3 intentos fallidos
+            header("Location: ../vistas/formRegistroUsuario.php");
+            exit();
+        } else {
+            $errores['login'] = "Usuario o contraseña incorrectos";
+            include('../vistas/formLogin.php');
+        }
     }
-
-    //En esta fase se comprueba los requisitos que pedimos para poder crear la cuenta
 }
 
 

@@ -67,7 +67,27 @@ function cCorreo($correo, &$errores){
     if(!$fechaValida){
         $errores['fechaNacimientoRegUser'] = "Error en el campo fechaNacimientoRegUser";
     }
+    return $fecha;
     
 }
-
-    
+// Función para comprobar si el usuario y la contraseña son válidos
+function usuarioValido($correo, $contrasena) {
+    // Abrir el archivo de usuarios para lectura
+    $archivoUsuarios = fopen("../ficheros/usuarios.txt", "r");
+    if ($archivoUsuarios) {
+        // Leer el archivo línea por línea
+        while (($linea = fgets($archivoUsuarios)) !== false) {
+            // Descomponer la línea en sus partes y comprobar si coinciden con los datos del formulario
+            list($nombre, $correoArchivo, $claveArchivo, $fechaNacimiento, $rutaFoto, $idioma, $descripcion) = explode(';', trim($linea));
+            if ($correo === $correoArchivo && $contrasena === $claveArchivo) {
+                // Si los datos coinciden, cerrar el archivo y retornar verdadero
+                fclose($archivoUsuarios);
+                return true;
+            }
+        }
+        // Cerrar el archivo si no se encuentra el usuario
+        fclose($archivoUsuarios);
+    }
+    // Retornar falso si el usuario no es válido
+    return false;
+} 
