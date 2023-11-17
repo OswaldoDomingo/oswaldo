@@ -40,7 +40,7 @@ function cCorreo($correo, &$errores){
     return $correoValido;
  }
 
- // Para la contraseña ha de ser de al menos 4 caravteres y máximo de 16
+ // Para la contraseña ha de ser de al menos 4 caracteres y máximo de 16
  // Puede llevar letras números y caracteres especiales excepto las < >
  function cPassword($pass, &$errores){
     $passValido = false;
@@ -58,3 +58,16 @@ function cCorreo($correo, &$errores){
 }
     return $passValido;
  }
+
+ function validarFecha($fecha, &$errores, $formato = 'Y-m-d') {
+    
+    $d = DateTime::createFromFormat($formato, $fecha);
+    $fechaValida =  $d && $d->format($formato) === $fecha;
+
+    if(!$fechaValida){
+        $errores['fechaNacimientoRegUser'] = "Error en el campo fechaNacimientoRegUser";
+    }
+    
+}
+
+    
