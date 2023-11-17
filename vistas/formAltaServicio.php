@@ -1,6 +1,7 @@
 <?php
 require_once (__DIR__ . "/../lib/funcionesFicheros.php");
 require_once (__DIR__ . "/../lib/bGeneral6.php");
+require_once (__DIR__ . "/../lib/config.php");
 require_once (__DIR__ . "/../lib/bRafa.php");
 cabecera("AltaServicio.php");
 if (isset($errores)&&count($errores) === 0) {
@@ -21,28 +22,39 @@ if (isset($errores)&&count($errores) === 0) {
     ?>
 	
     Categoría: <select id="categoria" name="categoria" VALUE="<?= isset($categoria)?$categoria: "";?>">
-            <option value=""></option>
-            <option value="Jardineria">Jardinería</option>
-            <option value="Clases_Repaso">Clases de Repaso</option>
-            <option value="Cuidado_Ancianos">Cuidado de ancianos</option>
-            <option value="Cuidado_Ninos">Cuidado de niños</option>
-            <option value="Mecanica">Mecánica</option>
+                    <option value=""></option>
+            
+                    <?php
+                        $categoriaKeys = array_keys($categoriasServicio);
+
+                        foreach($categoriaKeys as $categoriaKey)
+                        {
+                            echo("<option value=\"" . $categoriaKey . "\">" . $categoriasServicio[$categoriaKey] . "</option>");
+                        }
+                    ?>
+    
         </select><br><br>
     <br>
 	<?php
         echo (isset($errores['categoria'])) ? "$errores[categoria] <br>" : "";
     ?>
     
-    Tipo Servicio: <select id="tipo" name="tipo" VALUE="<?= isset($tipo)?$ctipo: "";?>">
-            <option value=""></option>
-            <option value="Pago">De Pago</option>
-            <option value="Intercambio">Por Intercambio</option>
-            <option value="Ambos">Ambos</option>
-        </select><br><br>
-    <br>
+    Tipo Servicio: <select id="tipo" name="tipo" VALUE="<?= isset($tipo)?$tipo: "";?>">
+                        <option value=""></option>
+                        <?php
+                            $tipoKeys = array_keys($tiposServicio);
+
+                            foreach($tipoKeys as $tipoKey)
+                            {
+                                echo("<option value=\"" . $tipoKey . "\">" . $tiposServicio[$tipoKey] . "</option>");
+                            }
+                        ?>
+        </select>
 	<?php
         echo (isset($errores['tipo'])) ? "$errores[tipo] <br>" : "";
     ?>
+    
+    &nbsp&nbsp&nbsp&nbsp&nbsp
     
     Precio Hora: <input TYPE="text" NAME="precio" VALUE="<?= isset($precioHora)?precio: "";?>"><br><br>
     <br>
@@ -50,29 +62,47 @@ if (isset($errores)&&count($errores) === 0) {
         echo (isset($errores['precio'])) ? "$errores[precio] <br>" : "";
     ?>
 
-    Ubicación: <input TYPE="text" NAME="ubicacion" VALUE="<?= isset($ubicacion)?$ubicacion: "";?>"><br><br>
+    <!--<input TYPE="text" NAME="ubicacion" VALUE="<?= isset($ubicacion)?$ubicacion: "";?>"><br><br>-->
+    <!--<br>-->
+    Ámbito: <select id="ubicacion" name="ubicacion" VALUE="<?= isset($ubicacion)?$ubicacion: "";?>">
+                <option value=""></option>
+                <?php
+                    $ambitoKeys = array_keys($ambitosServicio);
+
+                    foreach($ambitoKeys as $ambitoKey)
+                    {
+                        echo("<option value=\"" . $ambitoKey . "\">" . $ambitosServicio[$ambitoKey] . "</option>");
+                    }
+                ?>
+        </select><br><br><br>
     <br>
-	<?php
+    <?php
         echo (isset($errores['ubicacion'])) ? "$errores[ubicacion] <br>" : "";
     ?>
-    <?php
+    
+	<?php
         if(isset($titulo) && isset($propietario))
         {
             $rutaImagenServicio = "./imagenes/servicios/".$titulo.$propietario.".jpg"; 
             echo "Foto de servicio: <img src = '$rutaImagenServicio' alt='Servicio'><br><br>";
         }
         else    
-            echo "Foto de servicio: <img src = '' alt='Servicio'><br><br>";
-        //echo "<input TYPE="file" id="foto" name="foto">;"
+        {
+            echo "<input type=\"file\" id=\"myFile\" name=\"fotoServicio\"><br><br><br><br>";
+            //echo "<input type=\"submit\" name=\"bSubirFoto\" VALUE=\"SubirFoto\"><br><br><br><br>";
+        }   
     ?>
 
     Disponibilidad: <select id="disponibilidad" name="disponibilidad" VALUE="<?= isset($disponibilidad)?$disponibilidad: "";?>">
             <option value=""></option>
-            <option value="Completa">Completa</option>
-            <option value="Manyanas">Mañanas</option>
-            <option value="Tardes">Tardes</option>
-            <option value="Noches">Noches</option>
-            <option value="Fines_de_semana">Fines de semana</option>
+            <?php
+                $disponibilidadKeys = array_keys($disponibilidadesServicio);
+
+                foreach($disponibilidadKeys as $disponibilidadKey)
+                {
+                    echo("<option value=\"" . $disponibilidadKey . "\">" . $disponibilidadesServicio[$disponibilidadKey] . "</option>");
+                }
+            ?>
         </select><br><br>
     <br>
 	<?php

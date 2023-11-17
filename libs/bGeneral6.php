@@ -71,6 +71,17 @@ function cTexto($text, &$errores, $max = 200, $min = 1)
     return $valido;
 }
 
+/*
+ * function cTexto($text, &$errores, $max = 30, $min = 1)
+ * {
+ * if (! (preg_match("/^[A-Za-zÑñ]{" . $min, $max . "}$/", sinTildes($text)))) {
+ * $errores["name"] = "Error en el nombre";
+ * return false;
+ * } else {
+ * return true;
+ * }
+ * }
+ */
 function cNum($num, &$errores, $tam = PHP_INT_MAX)
 {
     $valido = true;
@@ -126,7 +137,7 @@ function cFile($nombre, $ruta, $extensionesValidas, &$errores)
         $nombreArchivo = $_FILES[$nombre]['name'];
         // Guardamos nombre del fichero en el servidor
         $directorioTemp = $_FILES[$nombre]['tmp_name'];
-        $extension = $_FILES['imagen']['type'];
+        $extension = $_FILES[$nombre]['type'];
         // Comprobamos la extensión del archivo dentro de la lista que hemos definido al principio
         if (! in_array($extension, $extensionesValidas)) {
             $errores[] = "La extensión del archivo no es válida o no se ha subido ningún archivo";
@@ -139,7 +150,7 @@ function cFile($nombre, $ruta, $extensionesValidas, &$errores)
         if (is_file($ruta . $nombreArchivo)) {
             
             // Podemos utilizar microtime() para páginas con mucho tráfico
-            $nombreArchivo = time() . $nombreArchivo;
+            $nombreArchivo = uniqid() . $nombreArchivo;
         }
         // Movemos el fichero a la ubicación definitiva
         if (move_uploaded_file($directorioTemp, $ruta . $nombreArchivo)) {
