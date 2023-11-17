@@ -10,18 +10,17 @@ $rutaImagenesServicios = RUTA_IMAGENES . "Servicios/";
 $errores = [];
 
 
-if ($archivo = is_file($rutaFichero)) {
+if (isset($_POST["bNuevoServicio"])) {
     
-    // Si hubiesemos guardado el fichero con saltos de línea
-    // en el comentario la lectura sería de otra forma
+    header('Location: altaServicio.php');
+    
+}else if ($archivo = is_file($rutaFichero)) {
+
     if ($archivo = fopen($rutaFichero, "r")) {
         
         $contador = 1;
         
         $tabla = "";
-        
-        $tabla = "<h2>Listado de Servicios</h2><br>";
-        
         
         //Dibujamos la tabla
         
@@ -38,7 +37,7 @@ if ($archivo = is_file($rutaFichero)) {
         $tabla .= obtenerCabeceraColumna ( "Categoría", 150, $centrado );
         $tabla .= obtenerCabeceraColumna ( "Tipo", 120, $centrado );
         $tabla .= obtenerCabeceraColumna ( "Precio", 40, $centrado );
-        $tabla .= obtenerCabeceraColumna ( "Ubicación", 200, $centrado );
+        $tabla .= obtenerCabeceraColumna ( "Ámbito", 200, $centrado );
         $tabla .= obtenerCabeceraColumna ( "Ruta Foto", 200, !$centrado );
         $tabla .= obtenerCabeceraColumna ( "Disponibilidad", 120, $centrado );
         $tabla .= obtenerCabeceraColumna ( "Descripción", 500, !$centrado );

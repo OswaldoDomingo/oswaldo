@@ -7,7 +7,7 @@ require_once (__DIR__ . "/../libs/config.php");
 require_once (__DIR__ . "/../vistas/formAltaServicio.php");
 
 $ruta = "../ficheros/servicios.txt";
-$rutaImagenTemporal = "";
+$rutaImagenesServicios = RUTA_IMAGENES . "Servicios/";
 
 $errores = [];
 $messageError = "Error en el formulario : ";
@@ -15,6 +15,11 @@ $messageError = "Error en el formulario : ";
 /**
  * flujo de código principal del fichero
  */
+
+if (isset($_POST["bVolver"])) {
+    
+    header('Location: servicios.php');
+}
 
 if (isset($_POST["bGuardar"])) {
 
@@ -25,6 +30,7 @@ if (isset($_POST["bGuardar"])) {
     $categoria = recoge("categoria");
     $tipo = recoge("tipo");
     $precio = recoge("precio");
+    $foto = "";
     $ubicacion = recoge("ubicacion");
     $disponibilidad = recoge("disponibilidad");
     
@@ -39,27 +45,27 @@ if (isset($_POST["bGuardar"])) {
     //PASO 2-Validamos que los campos obligatorios han sido rellenados
     
     if ($titulo === "") {
-        $errores["NoTitulo"] = $messageError . "Es obligatorio introducir el título.<br>";
+        $errores["NoTitulo"] = "Es obligatorio introducir el título.<br>";
     }
 
     if ($categoria === "") {
-        $errores["NoCategoria"] = $messageError . "Es obligatorio introducir la categoría<br>";
+        $errores["NoCategoria"] = "Es obligatorio introducir la categoría<br>";
     }
     
     if ($tipo === "") {
-        $errores["NoTipo"] = $messageError . "Es obligatorio introducir el tipo<br>";
+        $errores["NoTipo"] = "Es obligatorio introducir el tipo<br>";
     }
 
     if ($ubicacion === "") {
-        $errores["NoUbicacion"] = $messageError . "Es obligatorio introducir la ubicación<br>";
+        $errores["NoUbicacion"] = "Es obligatorio introducir la ubicación<br>";
     }
     
     if ($disponibilidad === "") {
-        $errores["NoDisponibilidad"] = $messageError . "Es obligatorio introducir la disponibilidad<br>";
+        $errores["NoDisponibilidad"] = "Es obligatorio introducir la disponibilidad<br>";
     }
     
     if ($descripcion === "") {
-        $errores["NoDescripcion"] = $messageError . "Es obligatorio introducir una desripción<br>";
+        $errores["NoDescripcion"] = "Es obligatorio introducir una desripción<br>";
     }
     
     
@@ -71,24 +77,24 @@ if (isset($_POST["bGuardar"])) {
         $categoriasKeys = array_keys($categoriasServicio);
         
         if(!in_array($categoria, $categoriasKeys))
-            $errores["CategoriaNoExiste"] = $messageError . "La categoría no es válida<br>";
+            $errores["CategoriaNoExiste"] = "La categoría no es válida<br>";
 
         
         $tiposKeys = array_keys($tiposServicio);
         
         if(!in_array($tipo, $tiposKeys))
-            $errores["TipoNoExiste"] = $messageError . "El tipo no es válido<br>";
+            $errores["TipoNoExiste"] = "El tipo no es válido<br>";
         
         $ambitosKeys = array_keys($ambitosServicio);
         
         if(!in_array($ubicacion, $ambitosKeys))
-            $errores["UbicacionNoExiste"] = $messageError . "La ubicación no es válida<br>";
+            $errores["UbicacionNoExiste"] = "La ubicación no es válida<br>";
 
         
         $disponibilidadKeys = array_keys($disponibilidadesServicio);
         
         if(!in_array($disponibilidad, $disponibilidadKeys))
-            $errores["DisponibilidadNoExiste"] = $messageError . "La disponibilidad no es válida<br>";  
+            $errores["DisponibilidadNoExiste"] = "La disponibilidad no es válida<br>";  
         
     }
     
@@ -117,7 +123,7 @@ if (isset($_POST["bGuardar"])) {
         {   
             $mensajeErrorImagen = "El servicio se ha registrado pero se ha producido un error subiendo su imagen. ";
             
-            $rutaFoto = RUTA_IMAGENES . $foto;
+            $rutaFoto = $rutaImagenesServicios . $foto;
             
             $errorGuardadoImagen = guardarImagen($_FILES["fotoServicio"], $rutaFoto, $mensajeErrorImagen, $maxFichero, $extensionesValidas);
             

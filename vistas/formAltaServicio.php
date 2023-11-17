@@ -15,7 +15,7 @@ if (isset($errores)&&count($errores) === 0) {
 	
     <h1>Dar de alta un servicio</h1>
     
-    Nombre: <input TYPE="text" NAME="titulo" VALUE="<?= isset($titulo)?titulo: "";?>"><br><br>
+    Nombre: <input TYPE="text" NAME="titulo" VALUE="<?= isset($titulo)?$titulo: "";?>"><br><br>
 	<br>
     <?php
         echo (isset($errores['titulo'])) ? "$errores[titulo] <br>" : "";
@@ -56,7 +56,7 @@ if (isset($errores)&&count($errores) === 0) {
     
     &nbsp&nbsp&nbsp&nbsp&nbsp
     
-    Precio Hora: <input TYPE="text" NAME="precio" VALUE="<?= isset($precioHora)?precio: "";?>"><br><br>
+    Precio Hora: <input TYPE="text" NAME="precio" VALUE="<?= isset($precio)?$precio: "";?>"><br><br>
     <br>
 	<?php
         echo (isset($errores['precio'])) ? "$errores[precio] <br>" : "";
@@ -117,5 +117,7 @@ if (isset($errores)&&count($errores) === 0) {
     ?>
 
 	<br>
-    <input TYPE="submit" name="bGuardar" VALUE="Guardar">
+    <input TYPE="submit" name="bGuardar" VALUE="Guardar" style="padding: 5px 15px; background: #99e0b2; border: 0; cursor: pointer; position: absolute; top: 585px; left: 350px;">
+    
+    <input type="submit" name="bVolver" VALUE="<- Volver" style="padding: 5px 15px; background: #99e0b2; border: 0; cursor: pointer; position: absolute; top: 585px; left: 10px;">
 </form>
