@@ -1,5 +1,5 @@
 <?php
-require_once (__DIR__ . "/../lib/config.php");
+require_once (__DIR__ . "/../libs/config.php");
 
 function cTextoAlfanumerico($nombreVariable, $text, &$errores, $max = 200, $min = 1)
 {

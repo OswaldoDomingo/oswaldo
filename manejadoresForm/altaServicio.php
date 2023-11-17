@@ -1,9 +1,9 @@
 <?php
 
-require_once (__DIR__ . "/../lib/funcionesFicheros.php");
-require_once (__DIR__ . "/../lib/bGeneral6.php");
-require_once (__DIR__ . "/../lib/bRafa.php");
-require_once (__DIR__ . "/../lib/config.php");
+require_once (__DIR__ . "/../libs/funcionesFicheros.php");
+require_once (__DIR__ . "/../libs/bGeneral6.php");
+require_once (__DIR__ . "/../libs/bRafa.php");
+require_once (__DIR__ . "/../libs/config.php");
 require_once (__DIR__ . "/../forms/formAltaServicio.php");
 
 $ruta = "../ficheros/servicios.txt";
