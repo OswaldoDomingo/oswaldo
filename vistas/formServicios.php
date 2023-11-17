@@ -1,6 +1,6 @@
 <?php
-require_once (__DIR__ . "/../lib/funcionesFicheros.php");
-require_once (__DIR__ . "/../lib/bGeneral6.php");
+require_once (__DIR__ . "/../libs/funcionesFicheros.php");
+require_once (__DIR__ . "/../libs/bGeneral6.php");
 cabecera("Servicios.php");
 ?>
 

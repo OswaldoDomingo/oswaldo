@@ -3,7 +3,7 @@ require_once (__DIR__ . "/../libs/funcionesFicheros.php");
 require_once (__DIR__ . "/../libs/bGeneral6.php");
 require_once (__DIR__ . "/../libs/bRafa.php");
 require_once (__DIR__ . "/../libs/config.php");
-require_once (__DIR__ . "/../forms/formServicios.php");
+require_once (__DIR__ . "/../vistas/formServicios.php");
 
 $rutaFichero = "../ficheros/servicios.txt";
 $rutaImagenesServicios = RUTA_IMAGENES . "Servicios/";
