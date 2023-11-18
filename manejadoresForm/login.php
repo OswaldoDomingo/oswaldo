@@ -23,12 +23,12 @@ if(!isset($_POST['enviarLogin'])) {
         $_SESSION['usuario'] = $correoLogin;
         $_SESSION['autenticado'] = 1;
         $_SESSION['intentos_fallidos'] = 0; // Reiniciar los intentos fallidos
-        header("Location: ../vistas/pagina_privada.php");// No se donde se envía al usuario
+        header("Location: ../manejadoresForm/perfilUsuario.php");
         exit();
     } else {
         //Si no entra porque puso algo mal
         $_SESSION['intentos_fallidos']++;//Se suma el intento y se registra en el log
-        file_put_contents("../ficheros/logLogin.txt", "$correoLogin; " . date("Y-m-d H:i:s") . "\n", FILE_APPEND);
+        file_put_contents("../ficheros/logLogin.txt", "$correoLogin; $contrasenyaLogin ;" . date("Y-m-d H:i:s") . "\n", FILE_APPEND);
         
         if ($_SESSION['intentos_fallidos'] >= 3) {
             // Redirigir al formulario de registro tras 3 intentos fallidos
