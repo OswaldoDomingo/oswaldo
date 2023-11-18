@@ -46,7 +46,7 @@ function cCorreo($correo, &$errores){
     $passValido = false;
     $temp = "";
     $patron = '/^[a-zA-Z0-9!@#$%^&*()_+\-=\[\]{};\'":\\|,\/?~]{4,16}$/';
-    if (isset($_REQUEST[$pass]) || trim($_REQUEST[$pass])==='') {
+    if (isset($_REQUEST[$pass]) || trim($_REQUEST[$pass]) !=='') {
         $temp = strip_tags($_REQUEST[$pass]);
         $temp = sinEspaciosInermedios($temp); //Se eliminan los espacios intermedios
         $temp = trim($temp);//Sin espacios a los laterales

@@ -1,1 +1,6 @@
 Nombre;Correo;Clave;FechaNacimiento;RutaFoto;Idioma;Descripcion
+Oswaldo;1;1;2023-11-01;../imagenes/usuarios/\x.png;ingles;dfasdfasdf<br>asdfasdfasdf
+Oswaldo;1;1;2023-11-01;../imagenes/usuarios/\1700296878x.png;ingles;dfasdfasdf<br>asdfasdfasdf
+Oswaldo;1;1;2023-11-01;../imagenes/usuarios/\1700296901x.png;ingles;dfasdfasdf<br>asdfasdfasdf
+Oswaldo;1;1;2023-11-01;../imagenes/usuarios/\1f44b.png;castellano;Mi clase de <br>Clases
+Dominmgo;1;1;2023-11-03;../imagenes/usuarios/\RaphaelInstagram.png;castellano;erafdsfadsf<br>asdfasdfasdf<br>asdfsdfasdf<br>asdfasdfasdf

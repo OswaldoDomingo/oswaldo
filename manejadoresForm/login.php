@@ -23,7 +23,7 @@ if(!isset($_POST['enviarLogin'])) {
         $_SESSION['usuario'] = $correoLogin;
         $_SESSION['autenticado'] = 1;
         $_SESSION['intentos_fallidos'] = 0; // Reiniciar los intentos fallidos
-        header("Location: pagina_privada.php");// No se donde se envía al usuario
+        header("Location: ../vistas/pagina_privada.php");// No se donde se envía al usuario
         exit();
     } else {
         //Si no entra porque puso algo mal
@@ -40,10 +40,4 @@ if(!isset($_POST['enviarLogin'])) {
         }
     }
 }
-
-
-
-
-
-
 ?>
