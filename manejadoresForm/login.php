@@ -1,7 +1,7 @@
 <?php
 include("../libs/bGeneral.php");
 include("../libs/bGeneralOswaldo.php");
-
+session_start();
 //Variables que se van a usar en el proceso
 $errores = [];
 $correoLogin = "";
@@ -20,10 +20,14 @@ if(!isset($_POST['enviarLogin'])) {
     $contrasenyaLogin = recoge('contrasenyaLogin');
 
     if(usuarioValido($correoLogin, $contrasenyaLogin)) {
+
         $_SESSION['usuario'] = $correoLogin;
         $_SESSION['autenticado'] = 1;
         $_SESSION['intentos_fallidos'] = 0; // Reiniciar los intentos fallidos
+        $_SESSION['contrasena'] = $contrasenyaLogin;
+
         header("Location: ../manejadoresForm/perfilUsuario.php");
+
         exit();
     } else {
         //Si no entra porque puso algo mal

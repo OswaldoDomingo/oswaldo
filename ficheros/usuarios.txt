@@ -1,8 +1,4 @@
 Nombre;Correo;Clave;FechaNacimiento;RutaFoto;Idioma;Descripcion
-Oswaldo;1@1.es;12345;2023-11-01;../imagenes/usuarios/\x.png;ingles;dfasdfasdf<br>asdfasdfasdf
-Oswaldo;1;1;2023-11-01;../imagenes/usuarios/\1700296878x.png;ingles;dfasdfasdf<br>asdfasdfasdf
-Oswaldo;1;1;2023-11-01;../imagenes/usuarios/\1700296901x.png;ingles;dfasdfasdf<br>asdfasdfasdf
-Oswaldo;1;1;2023-11-01;../imagenes/usuarios/\1f44b.png;castellano;Mi clase de <br>Clases
-Dominmgo;1;1;2023-11-03;../imagenes/usuarios/\RaphaelInstagram.png;castellano;erafdsfadsf<br>asdfasdfasdf<br>asdfsdfasdf<br>asdfasdfasdf
-Oswaldo;oswaldo@domingo.es;12345;2023-11-08;../imagenes/usuarios/\1700321787AntDesignFacebookFilled.png;castellano;La definitiva<br>pero no la <br>última.
 
+Oswaldo;oswaldo@domingo.es;12345;2023-11-01;../imagenes/usuarios/\PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
+Oswaldo2;oswaldo2@domingo.es;12345;2023-11-01;../imagenes/usuarios/\1700324242PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
