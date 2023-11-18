@@ -64,11 +64,14 @@ if (isset($_POST['enviarRegUser'])) {
     //Si no hay errores escribimos el fichero
     $fotoPerfil = cFile("fotoPerfilRegUser", $errores, $extensionesValidas, $rutaImagen, $maxFichero);
 
+    //Fecha de alta al servicio
+    $fechaAlta = date("d-m-Y H:i:s");
+
     if (empty($errores)) {
         //Ponerle nombre a la foto y subirla al directorio $rutaImagen, averiguar el array de formatos
 
         //Todos estos datos debemos escribirlos en un fichero cada registro separado por un ";"
-        $datos_usuario = "$nombre;$correoValidado;$passwordValidado;$fechaNacimiento;$fotoPerfil;$idioma;$comentarios\r\n";
+        $datos_usuario = "$fechaAlta;$nombre;$correoValidado;$passwordValidado;$fechaNacimiento;$fotoPerfil;$idioma;$comentarios\r\n";
 
         // Abrir/Crear archivo
         $archivo = fopen(__DIR__ . '/../ficheros/usuarios.txt', 'a');

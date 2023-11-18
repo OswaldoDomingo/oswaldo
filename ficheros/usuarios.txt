@@ -1,4 +1,6 @@
-Nombre;Correo;Clave;FechaNacimiento;RutaFoto;Idioma;Descripcion
+Nombre;Correo;Clave;FechaNacimiento;RutaFoto;Idioma;Descripcion;FechaAlta
 
 Oswaldo;oswaldo@domingo.es;12345;2023-11-01;../imagenes/usuarios/\PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
 Oswaldo2;oswaldo2@domingo.es;12345;2023-11-01;../imagenes/usuarios/\1700324242PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
+18-11-2023 20:18:05;Oswaldo3;oswaldo3@domingo.es;12345;2023-11-01;../imagenes/usuarios/\1700335085PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
+18-11-2023 20:57:40;Oswaldo4;oswaldo4@domingo.es;12345;2023-11-01;../imagenes/usuarios/\1700337460PhLinkedinLogoFill.png;castellano;ASDFASDFASDF

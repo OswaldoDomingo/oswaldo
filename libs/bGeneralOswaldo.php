@@ -78,7 +78,7 @@ function usuarioValido($correo, $contrasena) {
         // Leer el archivo línea por línea
         while (($linea = fgets($archivoUsuarios)) !== false) {
             // Descomponer la línea en sus partes y comprobar si coinciden con los datos del formulario
-            list($nombre, $correoArchivo, $claveArchivo, $fechaNacimiento, $rutaFoto, $idioma, $descripcion) = explode(';', trim($linea));
+            list($fechaAlta, $nombre, $correoArchivo, $claveArchivo, $fechaNacimiento, $rutaFoto, $idioma, $descripcion) = explode(';', trim($linea));
             if ($correo === $correoArchivo && $contrasena === $claveArchivo) {
                 // Si los datos coinciden, cerrar el archivo y retornar verdadero
                 fclose($archivoUsuarios);

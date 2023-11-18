@@ -26,7 +26,7 @@ if(!isset($_POST['enviarLogin'])) {
         $_SESSION['intentos_fallidos'] = 0; // Reiniciar los intentos fallidos
         $_SESSION['contrasena'] = $contrasenyaLogin;
 
-        header("Location: ../manejadoresForm/perfilUsuario.php");
+        header("Location: ../manejadoresForm/servicios.php");
 
         exit();
     } else {
