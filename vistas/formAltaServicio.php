@@ -15,7 +15,7 @@ if (isset($errores)&&count($errores) === 0) {
 	
     <h1>Dar de alta un servicio</h1>
     
-    Nombre: <input TYPE="text" NAME="titulo" VALUE="<?= isset($titulo)?$titulo: "";?>"><br><br>
+    Título: <input TYPE="text" NAME="titulo" VALUE="<?= isset($titulo)?$titulo: "";?>"><br><br>
 	<br>
     <?php
         echo (isset($errores['titulo'])) ? "$errores[titulo] <br>" : "";

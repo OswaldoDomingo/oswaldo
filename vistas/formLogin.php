@@ -12,4 +12,4 @@
 
 </form>
 
-<a href="../vistas/formRegistroUsuario.php">Registrarse como nuevo usuario</a>
+<a href="../manejadoresForm/altaUsuario.php">Registrarse como nuevo usuario</a>

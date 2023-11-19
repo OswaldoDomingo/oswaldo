@@ -1,6 +1,5 @@
 <?php
 require_once (__DIR__ . "/../libs/config.php");
-
 function cTextoAlfanumerico($nombreVariable, $text, &$errores, $max = 200, $min = 1)
 {
     $valido = true;
@@ -17,7 +16,6 @@ function cTextoAlfanumerico($nombreVariable, $text, &$errores, $max = 200, $min 
     
     return $valido;
 }
-
 function cMoneda($nombreVariable, $num, &$errores, $min = 0.001, $max = PHP_INT_MAX)
 {
     $valido = true;
@@ -33,17 +31,37 @@ function cMoneda($nombreVariable, $num, &$errores, $min = 0.001, $max = PHP_INT_
     return $valido;
 }
 
+function obtenerUsuario($correo) {
+    // Abrir el archivo de usuarios para lectura
+    $archivoUsuarios = fopen("../ficheros/usuarios.txt", "r");
+    if ($archivoUsuarios) {
+        // Leer el archivo línea por línea
+        $lineaIndex = 0;
+        while (($linea = fgets($archivoUsuarios)) !== false) {
+            $lineaIndex++;
+            // Descomponer la línea en sus partes y comprobar si coinciden con los datos del formulario
+            $usuario = explode(';', trim($linea));
+            if ($correo === $usuario[CORREO]) {
+                // Si los datos coinciden, cerrar el archivo y retornar verdadero
+                fclose($archivoUsuarios);
+                return $usuario;
+            }
+        }
+        // Cerrar el archivo si no se encuentra el usuario
+        fclose($archivoUsuarios);
+    } 
+    // Retornar falso si el usuario no es válido
+    return false;
+} 
+
+
 function guardarImagen(array $imagen, string $rutaFoto, string $mensajeErrorImagen, int $maxFichero, array $extensionesValidas)
 {
     $mensajeError = "";
-
     $errorImagen = $imagen["error"];
-
-
     if ($errorImagen != 0)
     {
         $mensajeError = $mensajeErrorImagen . $errorImagen;
-
         switch ($errorImagen) {
                 
             case 1:         //"UPLOAD_ERR_INI_SIZE";
@@ -89,17 +107,12 @@ function guardarImagen(array $imagen, string $rutaFoto, string $mensajeErrorImag
         if($mensajeError == "")
         {
             $nombreFoto = $imagen["name"];
-
             $rutaImagenTemporal = $imagen["tmp_name"];
-
             if (!move_uploaded_file($rutaImagenTemporal, $rutaFoto)) 
             {
                 $mensajeError = $mensajeErrorImagen;
+                return $mensajeError;
             }
         }
     }
-    
-    return $mensajeError;
 }
-
-?>

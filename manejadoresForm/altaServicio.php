@@ -1,10 +1,22 @@
 <?php
 
+session_start();
+
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 0) {
+     // Redirigir al usuario a la página de login si no está autenticado
+     header("Location: login.php");
+     exit();
+ }
+
+
 require_once (__DIR__ . "/../libs/funcionesFicheros.php");
 require_once (__DIR__ . "/../libs/bGeneral6.php");
 require_once (__DIR__ . "/../libs/bRafa.php");
 require_once (__DIR__ . "/../libs/config.php");
 require_once (__DIR__ . "/../vistas/formAltaServicio.php");
+
+
+
 
 $ruta = "../ficheros/servicios.txt";
 $rutaImagenesServicios = RUTA_IMAGENES . "Servicios/";
@@ -15,6 +27,7 @@ $messageError = "Error en el formulario : ";
 /**
  * flujo de código principal del fichero
  */
+
 
 if (isset($_POST["bVolver"])) {
     
@@ -159,3 +172,4 @@ if (isset($_POST["bGuardar"])) {
 }
 
 ?>
+

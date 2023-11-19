@@ -3,14 +3,20 @@ require_once (__DIR__ . "/../libs/funcionesFicheros.php");
 require_once (__DIR__ . "/../libs/bGeneral6.php");
 require_once (__DIR__ . "/../libs/config.php");
 cabecera("Servicios.php");
-
-$user_image = RUTA_IMAGENES . "usuario2.png";
 ?>
 
 <center><h1>Listado de Servicios</h1></center><br>
 
-<a href="otra_pagina.php">
-        <img src="<?php echo $user_image; ?>" style="with: 50px; height:50px; position: absolute; top: 0; right: 0; padding: 15px 15px;">
+<a href="perfilUsuario.php">
+        <img src="<?php echo $user_image; ?>" alt="perfilUsuario" style="with: 50px; height:50px; cursor: pointer; position: absolute; top: 0; right: 0; padding: 15px 215px;">
+</a>
+
+<a href="perfilUsuario_v2.php">
+        <img src="<?php echo $user_image; ?>" alt="perfilUsuario2" style="with: 50px; height:50px; cursor: pointer;  position: absolute; top: 0; right: 0; padding: 15px 115px;">
+</a>
+
+<a href="cerrarSesion.php">
+        <img src="../imagenes/logOut.png" alt="perfilUsuario2" style="with: 50px; height:50px; cursor: pointer;  position: absolute; top: 0; right: 0; padding: 15px 15px;">
 </a>
 
 <form action="" method="POST" enctype="multipart/form-data">

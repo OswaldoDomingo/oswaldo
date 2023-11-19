@@ -3,12 +3,22 @@ require_once (__DIR__ . "/../libs/funcionesFicheros.php");
 require_once (__DIR__ . "/../libs/bGeneral6.php");
 require_once (__DIR__ . "/../libs/bRafa.php");
 require_once (__DIR__ . "/../libs/config.php");
+
+session_start();
+
+if(!isset($_SESSION["autenticado"]) || $_SESSION['autenticado'] == 0)
+   header('Location: login.php');
+    
+if(isset($_SESSION["rutaFoto"]))
+{
+    $user_image = $_SESSION['rutaFoto'];
+}
+
 require_once (__DIR__ . "/../vistas/formServicios.php");
 
 $rutaFichero = "../ficheros/servicios.txt";
 $rutaImagenesServicios = RUTA_IMAGENES . "Servicios/";
 $errores = [];
-
 
 if (isset($_POST["bNuevoServicio"])) {
     
@@ -64,7 +74,7 @@ if (isset($_POST["bNuevoServicio"])) {
                 $titulo = $arrayServicio[TITULO];
                 $precio = strval( $arrayServicio[PRECIO] );
                 $foto = $arrayServicio[FOTO_SERVICIO];
-                $descripcion = $arrayServicio[DESCRIPCION];
+                $descripcion = $arrayServicio[DESCRIPCION_SERVICIO];
                 
                 //Obtenemos los valores de listas donde el texto mostrado varía del valor guardado
                 //Para ello utilizamos las listas que tenemos en config para obtener el valor del texto

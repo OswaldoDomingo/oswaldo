@@ -1,7 +1,11 @@
 <?php
-include("../libs/bGeneral.php");
-include("../libs/bGeneralOswaldo.php");
+require_once("../libs/bGeneral.php");
+require_once("../libs/bGeneralOswaldo.php");
+require_once("../libs/bRafa.php");
 session_start();
+
+$_SESSION['autenticado'] = 0;
+
 //Variables que se van a usar en el proceso
 $errores = [];
 $correoLogin = "";
@@ -14,8 +18,9 @@ if (!isset($_SESSION['intentos_fallidos'])) {
 //Verificamos que viene del botón enviar del formulario
 if(!isset($_POST['enviarLogin'])) {
     //Si no viene del formulario
-    include('../vistas/formLogin.php');
+    require_once('../vistas/formLogin.php');
 } else {
+    
     $correoLogin = recoge('correoLogin');
     $contrasenyaLogin = recoge('contrasenyaLogin');
 
@@ -25,6 +30,11 @@ if(!isset($_POST['enviarLogin'])) {
         $_SESSION['autenticado'] = 1;
         $_SESSION['intentos_fallidos'] = 0; // Reiniciar los intentos fallidos
         $_SESSION['contrasena'] = $contrasenyaLogin;
+        
+        $usuario = obtenerUsuario($correoLogin);
+
+        $_SESSION["rutaFoto"] = $usuario[FOTO_USUARIO];
+        $_SESSION['idioma'] = $usuario[IDIOMA];
 
         header("Location: ../manejadoresForm/servicios.php");
 
@@ -36,11 +46,11 @@ if(!isset($_POST['enviarLogin'])) {
         
         if ($_SESSION['intentos_fallidos'] >= 3) {
             // Redirigir al formulario de registro tras 3 intentos fallidos
-            header("Location: ../vistas/formRegistroUsuario.php");
-            exit();
+            header("Location: ../manejadoresForm/altaUsuario.php");
+            //exit();
         } else {
             $errores['login'] = "Usuario o contraseña incorrectos";
-            include('../vistas/formLogin.php');
+            require_once('../manejadoresForm/login.php');
         }
     }
 }

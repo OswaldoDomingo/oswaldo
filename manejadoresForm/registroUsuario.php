@@ -78,11 +78,14 @@ if (isset($_POST['enviarRegUser'])) {
 
     echo "<b>Punto de depuración: después de todas las validaciones<b><br>";
     var_dump($errores);
-    //Si no hay errores escribimos el fichero pero si está vacío no pasa nada
-    if (!empty($_FILES['fotoPerfilRegUser']['name'])) {
-        $fotoPerfil = cFile("fotoPerfilRegUser", $errores, $extensionesValidas, $rutaImagen, $maxFichero);
-    }
+    
+    $fotoPerfil= "";
 
+    if(isset ($_FILES["fotoPerfilRegUser"]) && isset ($_FILES["fotoPerfilRegUser"]["name"]) && $_FILES["fotoPerfilRegUser"]["name"] != "")
+    {
+        $fotoPerfil = $ruta . $_FILES["fotoPerfilRegUser"]["name"];
+    }  
+    
     //Fecha de alta al servicio
     $fechaAlta = date("d-m-Y H:i:s");
 
@@ -103,7 +106,10 @@ if (isset($_POST['enviarRegUser'])) {
         header("Location: ../manejadoresForm/login.php");
         exit();
     } else {
-        include("../vistas/formRegistroUsuario.php");
+        
+        $mensajeError = "<br><br><br><br><div><b>" . $messageError . array_values($errores)[0] . "</b></div>";
+        echo($mensajeError);
+        
     }
 } else {
     include("../vistas/formRegistroUsuario.php");

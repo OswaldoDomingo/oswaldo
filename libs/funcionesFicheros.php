@@ -1,13 +1,8 @@
 <?php
 
-
-
-
 function guardarAlPrincipio ($ruta, $msg) {
-    echo "guardarAlPrincipio";
     $archivo = file_get_contents($ruta);
     $msg=$msg.$archivo;
-    echo "file_put_contents";
     file_put_contents($ruta, $msg);
     
 }
@@ -21,25 +16,74 @@ function insertarArchivoFinal($ruta, $msg){
         return "false";
 }
 
+function guardarImagen(array $imagen, string $rutaFoto, string $mensajeErrorImagen, int $maxFichero, array $extensionesValidas)
+{
+    $mensajeError = "";
 
-function imprimirLineaALinea($ruta, $arrayLabels){
-    
-    while (!feof($ruta)) {
+    $errorImagen = $imagen["error"];
+
+
+    if ($errorImagen != 0)
+    {
+        $mensajeError = $mensajeErrorImagen . $errorImagen;
+
+        switch ($errorImagen) {
+                
+            case 1:         //"UPLOAD_ERR_INI_SIZE";
+                $mensajeError = $mensajeErrorImagen . "Fichero demasiado grande";
+                break;
+            case 2:         //"UPLOAD_ERR_FORM_SIZE";
+                $mensajeError = $mensajeErrorImagen . 'El fichero es demasiado grande';
+                break;
+            case 3:         //"UPLOAD_ERR_PARTIAL";
+                $mensajeError = $mensajeErrorImagen . 'El fichero no se ha podido subir entero';
+                break;
+            case 4:         //"UPLOAD_ERR_NO_FILE";
+                $mensajeError = $mensajeErrorImagen . 'No se ha podido subir el fichero';
+                break;
+            case 6:         //"UPLOAD_ERR_NO_TMP_DIR";
+                $mensajeError = $mensajeErrorImagen . "Falta carpeta temporal";
+                break;
+            case 7:         //"UPLOAD_ERR_CANT_WRITE";
+                $mensajeError = $mensajeErrorImagen . "No se ha podido escribir en el disco";
+                break;
+                
+            default:
+                $mensajeError = $mensajeErrorImagen . 'Error indeterminado.';
+        }
+    }
+    else
+    {
+        $tamano = $imagen['size'];
         
-        $linea = fgets($ruta);
-        $valores = explode(";", $linea);
-
-        if (! empty($valores[0]) && sizeof($valores) >= sizeof($arrayLabels) )
+        if($tamano > $maxFichero)
+            $mensajeError = $mensajeErrorImagen . "<br>La foto es demasiado grande. <br>El tamaño máximo es de " . $maxFichero/1024 . "Kb";
+        else
         {
-            for($i = 0; $i < sizeof($arrayLabels); $i++)
-            {
-                echo $arrayLabels[$i] . " :  " . $arrayServicio[$i];
+            $nombreFotoPartes = explode('.', $imagen['name']);
+            
+            $extension = $nombreFotoPartes[count($nombreFotoPartes) - 1];
+        
+            if (!in_array($extension, $extensionesValidas))
+                $mensajeError =  $mensajeErrorImagen . "<br>La extensión de la foto  no es correcta.<br> - Se permiten archivos .gif, .jpg, .png.";
+        }
+        
+        
+        if($mensajeError == "")
+        {
+            $nombreFoto = $imagen["name"];
 
-                echo "<br>";
+            $rutaImagenTemporal = $imagen["tmp_name"];
+
+            if (!move_uploaded_file($rutaImagenTemporal, $rutaFoto)) 
+            {
+                $mensajeError = $mensajeErrorImagen;
             }
         }
     }
-     
+    
+    return $mensajeError;
 }
+
 
 ?>
