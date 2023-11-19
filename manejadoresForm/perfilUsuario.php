@@ -2,14 +2,15 @@
 session_start();
 echo "<h1>Perfil de usuario</h1>";
 
-// if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 1) {
-//     // Redirigir al usuario a la página de login si no está autenticado
-//     header("Location: login.php");
-//     exit();
-// }
 // Suponiendo que el correo y la contraseña están almacenados en la sesión
 $correoUsuario = $_SESSION['usuario'];
 $contrasenaUsuario = $_SESSION['contrasena']; // Asegúrate de que estás almacenando la contraseña de forma segura
+
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 1) {
+    // Redirigir al usuario a la página de login si no está autenticado
+    header("Location: login.php");
+    exit();
+}
 
 // Leer el archivo de usuarios y buscar los datos del usuario actual
 $usuarios = fopen('../ficheros/usuarios.txt', 'r');

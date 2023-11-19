@@ -1,6 +1,9 @@
-Nombre;Correo;Clave;FechaNacimiento;RutaFoto;Idioma;Descripcion;FechaAlta
+FechaAlta;Nombre;Correo;Clave;FechaNacimiento;RutaFoto;Idioma;Descripcion
 
-Oswaldo;oswaldo@domingo.es;12345;2023-11-01;../imagenes/usuarios/\PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
-Oswaldo2;oswaldo2@domingo.es;12345;2023-11-01;../imagenes/usuarios/\1700324242PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
+18-11-2023 20:18:05;Oswaldo;oswaldo@domingo.es;12345;2023-11-01;../imagenes/usuarios/\PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
+18-11-2023 20:18:05;Oswaldo2;oswaldo2@domingo.es;12345;2023-11-01;../imagenes/usuarios/\1700324242PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
 18-11-2023 20:18:05;Oswaldo3;oswaldo3@domingo.es;12345;2023-11-01;../imagenes/usuarios/\1700335085PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
 18-11-2023 20:57:40;Oswaldo4;oswaldo4@domingo.es;12345;2023-11-01;../imagenes/usuarios/\1700337460PhLinkedinLogoFill.png;castellano;ASDFASDFASDF
+19-11-2023 13:12:48;Oswaldo;oswaldo6@domingo.es;12345;2001-02-07;;ingles;dfsadfasdfasdf
+19-11-2023 13:13:22;Oswaldo;oswaldo6@domingo.es;12345;2001-02-07;;;dfsadfasdfasdf
+19-11-2023 13:54:17;Oswaldo;oswaldo10@domingo.es;12345;1990-06-19;../imagenes/usuarios/\dibujanino.jpg;ingles, castellano;dfgasfdasdfasdf

@@ -37,20 +37,36 @@ Y el botón siguientes :
     <?php echo (isset($errores['fotoPerfilRegUser'])) ? "$errores[fotoPerfilRegUser]" : "";
     echo "<br>"; ?>
 
-    <label for="idiomas">Idioma</label><br>
+    <!-- <label for="idiomas">Idioma</label><br>
     <select name="idiomaRegUser" id="idiomas">
         <option value="">--Por favor elige una opción--</option>
         <option value="ingles">English</option>
         <option value="castellano">Castellano</option>
     </select>
-    <?php echo (isset($errores['idiomaRegUser'])) ? "$errores[idiomaRegUser]" : "";
-    echo "<br>"; ?>
+    -->
+    <?php //echo (isset($errores['idiomaRegUser'])) ? "$errores[idiomaRegUser]" : "";
+    //echo "<br>"; 
+    ?>
+    <!-- CAMBIO A CHECK BOX-->
+    <label for="idiomas">Idioma</label><br>
+    <input type="checkbox" id="ingles" name="idiomaRegUser[]" value="ingles">
+    <label for="ingles">English</label><br>
+    <input type="checkbox" id="castellano" name="idiomaRegUser[]" value="castellano">
+    <label for="castellano">Castellano</label><br>
+    <?php
+    if (isset($errores['idiomaRegUser'])) {
+        foreach ($errores['idiomaRegUser'] as $error) {
+            echo $error . "<br>";
+        }
+    }
+    ?>
+    <!-- FIN CAMBIO -->
 
     <label for="comentarios">Comentarios</label><br>
     <textarea name="comentariosRegUser" id="comentarios" cols="30" rows="10" placeholder="Escribe una reseña sobre tí."></textarea><br>
     <?php echo (isset($errores['comentariosRegUser'])) ? "$errores[comentariosRegUser]" : "";
     echo "<br>"; ?>
-    
+
     <input type="submit" value="Enviar" name="enviarRegUser">
- 
+
 </form>

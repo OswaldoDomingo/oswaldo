@@ -60,13 +60,25 @@ function cCorreo($correo, &$errores){
  }
 
  function validarFecha($fecha, &$errores, $formato = 'Y-m-d') {
-    
+    // Crear un objeto DateTime a partir de la fecha proporcionada
     $d = DateTime::createFromFormat($formato, $fecha);
+        // Verificar si la fecha es válida
     $fechaValida =  $d && $d->format($formato) === $fecha;
 
+    // Si la fecha no es válida, agregar un error al array de errores y devolver la fecha
     if(!$fechaValida){
         $errores['fechaNacimientoRegUser'] = "Error en el campo fechaNacimientoRegUser";
+        return $fecha;
     }
+    // Crear un objeto DateTime para la fecha actual
+    $hoy = new DateTime();
+     // Calcular la diferencia en años entre la fecha actual y la fecha de nacimiento
+    $edad = $hoy->diff($d)->y;
+    // Si la edad es menor que 18, agregar un error a la matriz de errores
+    if($edad < 18){
+        $errores['fechaNacimientoRegUser'] = "El usuario debe ser mayor de 18 años";
+    }
+    // Devolver la fecha
     return $fecha;
     
 }
@@ -74,11 +86,15 @@ function cCorreo($correo, &$errores){
 function usuarioValido($correo, $contrasena) {
     // Abrir el archivo de usuarios para lectura
     $archivoUsuarios = fopen("../ficheros/usuarios.txt", "r");
+    // Comprueba si el archivo se abrió correctamente
     if ($archivoUsuarios) {
         // Leer el archivo línea por línea
         while (($linea = fgets($archivoUsuarios)) !== false) {
             // Descomponer la línea en sus partes y comprobar si coinciden con los datos del formulario
+            // explode() divide la línea en un array usando ';' como delimitador
+            // list() asigna cada elemento del array a una variable
             list($fechaAlta, $nombre, $correoArchivo, $claveArchivo, $fechaNacimiento, $rutaFoto, $idioma, $descripcion) = explode(';', trim($linea));
+            // Comprueba si el correo y la contraseña proporcionados coinciden con los del archivo
             if ($correo === $correoArchivo && $contrasena === $claveArchivo) {
                 // Si los datos coinciden, cerrar el archivo y retornar verdadero
                 fclose($archivoUsuarios);
