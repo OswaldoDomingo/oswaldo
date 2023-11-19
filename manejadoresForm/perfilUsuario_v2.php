@@ -131,19 +131,11 @@ else
             $nuevoIdioma = recoge("idioma");
             
             $nuevaDescripcion = recoge("descripcionUsuario");     
-            
-            
-            if(isset ($_FILES["fotoServicio"]) && isset ($_FILES["fotoServicio"]["name"]) && $_FILES["fotoServicio"]["name"] != "")
-            {
-                echo("Recojo foto");
-                $foto = uniqid() . $_FILES["fotoUsuario"]["name"];
-            }  
 
-            /*if(isset ($_FILES["fotoUsuario"]) && isset ($_FILES["fotoUsuario"]["name"]) && $_FILES["fotoUsuario"]["name"] != "")
+            if(isset ($_FILES["fotoUsuario"]) && isset ($_FILES["fotoUsuario"]["name"]) && $_FILES["fotoUsuario"]["name"] != "")
             {
-                echo("HAY ARCHIVO DENTRO");
-                $nuevaFoto = $rutaImagenesUsuarios . $_FILES["fotoUsuario"]["name"];
-            }  */
+                $nuevaFoto = $rutaImagenesUsuarios . uniqid() . $_FILES["fotoUsuario"]["name"];
+            } 
 
              //PASO 3 - Comprobamos si ha habido cambios con respecto a los valores anteriores
             
@@ -163,8 +155,7 @@ else
             
            if(!$conCambios)
             {
-               echo("NO HAY CAMBIOS");
-                //header('Location: servicios.php');
+                header('Location: servicios.php');
             }
             else
             {
@@ -197,6 +188,7 @@ else
                             
                             //Actualizamos los datos en session
                             $_SESSION['$nuevoIdioma'] = $idioma;
+                            $_SESSION['$contrasena'] = $nuevaClave;
                            
                             $lineas[$i] = "$fechaAlta;$nombre;$correo;$nuevaClave;$fechaNacimiento;$rutaFoto;$nuevoIdioma;$nuevaDescripcion";
                         }
