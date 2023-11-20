@@ -52,12 +52,12 @@
     echo "<br><br><br>"; ?>
 
     <label for="comentarios">Comentarios</label><br>
-    <textarea TYPE="text"  NAME="descripcionUsuario" id="descripcionUsuario" cols="30" rows="10" placeholder="Escribe una reseña sobre tí."><?= isset($descripcionUsuario)?$descripcionUsuario: "";?>"></textarea><br>                         
+	<textarea TYPE="text"  NAME="descripcionUsuario" id="descripcionUsuario" cols="30" rows="10" placeholder="Escribe una reseña sobre tí."><?= isset($descripcionUsuario)?$descripcionUsuario: "";?>"></textarea><br>                      
     <?php echo (isset($errores['descripcionUsuario'])) ? "$errores[descripcionUsuario]" : "";
     echo "<br>"; ?>
     
-    <input TYPE="submit" name="bGuardar" VALUE="Guardar" style="padding: 5px 15px; background: #99e0b2; border: 0; cursor: pointer; position: absolute; top: 600px; left: 210px;">
+<input TYPE="submit" name="bGuardar" VALUE="Guardar" style="padding: 5px 15px; background: #99e0b2; border: 0; cursor: pointer; position: absolute; top: 650px; left: 210px;">
     
-    <input type="submit" name="bVolver" VALUE="<- Volver" style="padding: 5px 15px; background: #99e0b2; border: 0; cursor: pointer; position: absolute; top: 600px; left: 10px;">
+<input type="submit" name="bVolver" VALUE="<- Volver" style="padding: 5px 15px; background: #99e0b2; border: 0; cursor: pointer; position: absolute; top: 650px; left: 10px;">
     
 </form>

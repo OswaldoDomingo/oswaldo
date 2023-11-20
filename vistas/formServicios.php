@@ -7,10 +7,6 @@ cabecera("Servicios.php");
 
 <center><h1>Listado de Servicios</h1></center><br>
 
-<a href="perfilUsuario.php">
-        <img src="<?php echo $user_image; ?>" alt="perfilUsuario" style="with: 50px; height:50px; cursor: pointer; position: absolute; top: 0; right: 0; padding: 15px 215px;">
-</a>
-
 <a href="perfilUsuario_v2.php">
         <img src="<?php echo $user_image; ?>" alt="perfilUsuario2" style="with: 50px; height:50px; cursor: pointer;  position: absolute; top: 0; right: 0; padding: 15px 115px;">
 </a>

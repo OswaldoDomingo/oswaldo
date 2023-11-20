@@ -40,11 +40,17 @@ $lineas = [];
 $encontrado = false;
 
 //Borrame tras la implementación de $_SESSION[];
-$usuario = "carlospelaezmenendez@gmail.com";
-$clave = "Elefante";
+$usuarioSession = "";
+$claveSession = "";
+$rutaFotoSession = "";
 
-$usuario = "rodolfoprestonmanrique@gmail.com";
-$clave = "Monday";
+if (isset($_SESSION['usuario'])) {
+    $usuarioSession = $_SESSION['usuario'];
+ }
+
+if (isset($_SESSION['rutaFoto'])) {
+    $rutaFotoSession = $_SESSION['rutaFoto'];
+ }
 
 //Si es un fichero existente traemos sus lineas y buscamos el registro
 if(count($errores) > 0)
@@ -63,7 +69,7 @@ if(is_file($ruta))
     {
         $arrayUsuarioGuardado =  explode(";", $lineas[$i]);
 
-        if($arrayUsuarioGuardado[CLAVE] === $clave)
+        if($arrayUsuarioGuardado[CORREO] === $usuarioSession)
         {
             
             $fechaAlta = $arrayUsuarioGuardado[FECHA_ALTA];
@@ -74,7 +80,13 @@ if(is_file($ruta))
             $descripcionUsuario = str_replace("<br>", PHP_EOL, $descripcionUsuario);
             
             if(isset($fotoUsuario) && is_file($fotoUsuario))
+            {
                 $fotoMostrada = $fotoUsuario;
+            }    
+            else if(isset($rutaFotoSession) && is_file($rutaFotoSession))
+            {
+                $fotoMostrada = $rutaFotoSession;
+            }
             else
                 $fotoMostrada = "../imagenes/subidaImagen.png";
                 

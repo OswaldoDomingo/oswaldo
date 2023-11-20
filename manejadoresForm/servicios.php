@@ -1,9 +1,4 @@
 <?php
-require_once (__DIR__ . "/../libs/funcionesFicheros.php");
-require_once (__DIR__ . "/../libs/bGeneral6.php");
-require_once (__DIR__ . "/../libs/bRafa.php");
-require_once (__DIR__ . "/../libs/config.php");
-
 session_start();
 
 if(!isset($_SESSION["autenticado"]) || $_SESSION['autenticado'] == 0)
@@ -14,6 +9,10 @@ if(isset($_SESSION["rutaFoto"]))
     $user_image = $_SESSION['rutaFoto'];
 }
 
+require_once (__DIR__ . "/../libs/funcionesFicheros.php");
+require_once (__DIR__ . "/../libs/bGeneral6.php");
+require_once (__DIR__ . "/../libs/bRafa.php");
+require_once (__DIR__ . "/../libs/config.php");														  												  											  											   
 require_once (__DIR__ . "/../vistas/formServicios.php");
 
 $rutaFichero = "../ficheros/servicios.txt";

@@ -70,6 +70,7 @@ const DESCRIPCION_USUARIO = 7;
 const TITULO = 1;
 const CATEGORIA = 2;
 const TIPO = 3;
+const PRECIO = 4;				 
 const UBICACION = 5;
 const FOTO_SERVICIO = 6;
 const DISPONIBILIDAD = 7;

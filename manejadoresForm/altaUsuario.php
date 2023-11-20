@@ -1,13 +1,5 @@
 <?php
 
-session_start();
-
-if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 0) {
-     // Redirigir al usuario a la página de login si no está autenticado
-     header("Location: login.php");
-     exit();
- }
-
 require_once(__DIR__ . "/../libs/bGeneral6.php");
 require_once(__DIR__ . "/../libs/config.php");
 require_once(__DIR__ . "/../libs/funcionesFicheros.php");
@@ -22,7 +14,7 @@ $ruta = "../ficheros/usuarios.txt";
 $rutaImagenesUsuarios = RUTA_IMAGENES . "Usuarios/";
 
 $errores = [];
-$messageError = "Error en el formulario : ";
+$mensajeError = "Error en el formulario : ";
 
 /**
  * nomnbreRegUser
@@ -79,7 +71,6 @@ if(isset($_POST['enviarRegUser'])){
     //Al ser no obligatorio comprobamos si la foto ha sido asignado o o no con el if(isset)
     if(isset ($_FILES["fotoPerfilRegUser"]) && isset ($_FILES["fotoPerfilRegUser"]["name"]) && $_FILES["fotoPerfilRegUser"]["name"] != "")
     {
-        echo("FOTO PERFIL = " . $_FILES["fotoPerfilRegUser"]["name"]);
         $fotoPerfil = $rutaImagenesUsuarios . uniqid() . $_FILES["fotoPerfilRegUser"]["name"];
     }  
     
