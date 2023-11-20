@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 0) {
@@ -7,13 +8,14 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 0) {
      exit();
  }
 
-session_destroy(); // destruyo la sesión
-
 $ahora = date("Y-n-j H:i:s");
 
 $_SESSION['autenticado'] = 0;
 $_SESSION["ultimoAcceso"] = $ahora;
 
-header("Location: login.php"); 
+session_unset();     
+session_destroy();   
+header("Location: login.php");
+exit();
 
 ?>

@@ -1,30 +1,86 @@
 <?php
 session_start();
 
-if(!isset($_SESSION["autenticado"]) || $_SESSION['autenticado'] == 0)
-   header('Location: login.php');
-    
-if(isset($_SESSION["rutaFoto"]))
-{
-    $user_image = $_SESSION['rutaFoto'];
-}
-
 require_once (__DIR__ . "/../libs/funcionesFicheros.php");
 require_once (__DIR__ . "/../libs/bGeneral6.php");
 require_once (__DIR__ . "/../libs/bRafa.php");
-require_once (__DIR__ . "/../libs/config.php");														  												  											  											   
-require_once (__DIR__ . "/../vistas/formServicios.php");
+require_once (__DIR__ . "/../libs/config.php");
+														
 
 $rutaFichero = "../ficheros/servicios.txt";
 $rutaImagenesServicios = RUTA_IMAGENES . "Servicios/";
 $errores = [];
 
+if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 0) {
+     header("Location: cerrarSesion.php");
+ }
+
+if (!isset($_SESSION['direccion_ip'])) {
+    $_SESSION['direccion_ip'] = $_SERVER['REMOTE_ADDR'];
+}
+
+if ($_SESSION['direccion_ip'] != $_SERVER['REMOTE_ADDR']) {
+     header("Location: cerrarSesion.php");
+}
+
+if (isset($_SESSION['ultimaActividad']) && (time() - $_SESSION['ultimaActividad'] > TIEMPO_MAX_INACTIVIDAD)) {
+    header("Location: cerrarSesion.php");
+}
+
+$_SESSION['ultimaActividad'] = time(); // Actualizar la hora de la última actividad
+
+if(!isset($usuarioNombre) && isset($_SESSION["usuario"]))
+    $usuarioNombre = $_SESSION['usuario'];
+else
+    $usuarioNombre = "";
+
+if(!isset($usuarioFoto) && isset($_SESSION["rutaFoto"]))
+    $usuarioFoto = $_SESSION['rutaFoto'];
+else
+    $usuarioFoto = "";
+
+if(!isset($_COOKIE["colorFondo"]))
+{       
+    $colorFondo = COLOR_BLANCO;
+    $colorCambio = COLOR_NARANJA;
+    $colorImagen = "../imagenes/colorBlanco.png";
+}   
+else
+{
+    $colorValue = $_COOKIE["colorFondo"];
+           
+    if($colorValue == COLOR_NARANJA)
+    {
+        $colorFondo = COLOR_BLANCO;
+        $colorCambio = COLOR_NARANJA;
+        $colorImagen = "../imagenes/colorNaranja.png";      
+    }
+    else
+    {
+        $colorFondo = COLOR_NARANJA;
+        $colorCambio = COLOR_BLANCO;
+        $colorImagen = "../imagenes/colorBlanco.png";
+    }
+}
+
+if(isset($colorFondo))
+    setcookie("colorFondo", $colorFondo);
+
+if(isset($_SESSION["bCambioColor"])) {
+    
+    require_once (__DIR__ . "/../vistas/formServicios.php");
+}
+
+
 if (isset($_POST["bNuevoServicio"])) {
     
     header('Location: altaServicio.php');
     
-}else if ($archivo = is_file($rutaFichero)) {
+}
+else if ($archivo = is_file($rutaFichero)) {
 
+    require_once (__DIR__ . "/../vistas/formServicios.php");
+    
     if ($archivo = fopen($rutaFichero, "r")) {
         
         $contador = 1;

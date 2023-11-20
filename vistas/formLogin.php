@@ -1,15 +1,22 @@
 <form action="" method="post">
-    <label for="correo">Usuario</label>
-    <input type="email" name="correoLogin" id="correo" novalidate>
-    <br>
-        <?php echo (isset($errores['correoLogin'])) ? "$errores[correoLogin]" : ""; echo "<br>"; ?>
-    <label for="acceso">Contraseña</label>
-    <input type="password" name="contrasenyaLogin" id="acceso" novalidate>
-    <br>
-        <?php echo (isset($errores['contrasenyaLogin'])) ? "$errores[contrasenyaLogin]" : ""; echo "<br>"; ?>
-    <br>
-    <input type="submit" value="Enviar" name="enviarLogin">
+    <center><h1>Accede para ofrecer y contratar servicios con particulares</h1></center>
+    <center><p>
+            <label for="correo">Usuario</label>
+            <input type="email" name="correoLogin" size="25" id="correo" novalidate>
+    </p></center>
+    
+        <?php echo (isset($errores['correoLogin'])) ? "$errores[correoLogin]" : ""; ?>
+    
+    <center><p>
+            <label for="acceso">Contraseña</label>
+            <input type="password" name="contrasenyaLogin" size="25"  id="acceso" novalidate>
+    </p></center>
+    
+        <?php echo (isset($errores['contrasenyaLogin'])) ? "$errores[contrasenyaLogin]" : "";  ?>
+    
+    
+    <center><input type="submit" value="Enviar" name="enviarLogin"></center>
 
 </form>
 
-<a href="../manejadoresForm/altaUsuario.php">Registrarse como nuevo usuario</a>
+<center><a href="../manejadoresForm/altaUsuario.php">Registrarse como nuevo usuario</a></center><br><br><br>

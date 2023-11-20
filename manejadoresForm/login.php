@@ -1,6 +1,7 @@
 <?php
 require_once("../libs/bGeneral.php");
 require_once("../libs/bGeneralOswaldo.php");
+require_once("../libs/config.php");
 require_once("../libs/bRafa.php");
 session_start();
 
@@ -10,6 +11,7 @@ $_SESSION['autenticado'] = 0;
 $errores = [];
 $correoLogin = "";
 $contrasenyaLogin = "";
+$rutaFichero = "../ficheros/servicios.txt";
 
 // Inicializar o actualizar el contador de intentos fallidos
 if (!isset($_SESSION['intentos_fallidos'])) {
@@ -19,12 +21,47 @@ if (!isset($_SESSION['intentos_fallidos'])) {
 if(!isset($_POST['enviarLogin'])) {
     //Si no viene del formulario
     require_once('../vistas/formLogin.php');
+    
+    //Si existe el fichero servicios lo recorremos y listamos los títulos de servicios
+    //Si no existe lo creamos
+    if(is_file($rutaFichero))
+    {
+        $servicios = file($rutaFichero, FILE_IGNORE_NEW_LINES);
+    
+        if(count($servicios) > 0)
+        {
+            echo("<center><h2>Listado de servicios</h2></center>");
+            echo("<center><ul></center>");
+
+            foreach($servicios as $servicio)
+            {
+                $arrayServicio = explode(';', $servicio);
+                
+                if(sizeof($arrayServicio) > TITULO)
+                {
+                    echo("<center><li>" . $arrayServicio[TITULO] . "</li><br></center>");
+                }
+            }
+
+            echo("<center></ul></center>");
+        }
+    }
+    else if(fopen($rutaFichero, "w") != false)
+    {
+        fclose($file);
+    }
+    
+    
 } else {
     
     $correoLogin = recoge('correoLogin');
     $contrasenyaLogin = recoge('contrasenyaLogin');
 
     if(usuarioValido($correoLogin, $contrasenyaLogin)) {
+
+        session_start();
+
+        $_SESSION['direccion_ip'] = $_SERVER['REMOTE_ADDR'];
 
         $_SESSION['usuario'] = $correoLogin;
         $_SESSION['autenticado'] = 1;
@@ -33,6 +70,7 @@ if(!isset($_POST['enviarLogin'])) {
         
         $usuario = obtenerUsuario($correoLogin);
 
+        $_SESSION["nombre"] = $usuario[FOTO_USUARIO];
         $_SESSION["rutaFoto"] = $usuario[FOTO_USUARIO];
         $_SESSION['idioma'] = $usuario[IDIOMA];
 

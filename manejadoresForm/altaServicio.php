@@ -2,17 +2,33 @@
 
 session_start();
 
+
+require_once (__DIR__ . "/../libs/config.php");
+
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 0) {
-     // Redirigir al usuario a la página de login si no está autenticado
-     header("Location: login.php");
-     exit();
+																		  
+     header("Location: cerrarSesion.php");
+			
  }
 
+if (!isset($_SESSION['direccion_ip'])) {
+    $_SESSION['direccion_ip'] = $_SERVER['REMOTE_ADDR'];
+}
+
+if ($_SESSION['direccion_ip'] != $_SERVER['REMOTE_ADDR']) {
+     header("Location: cerrarSesion.php");
+ }
+
+if (isset($_SESSION['ultimaActividad']) && (time() - $_SESSION['ultimaActividad'] > TIEMPO_MAX_INACTIVIDAD)) {
+    header("Location: cerrarSesion.php");
+}
+
+$_SESSION['ultimaActividad'] = time(); // Actualizar la hora de la última actividad
 
 require_once (__DIR__ . "/../libs/funcionesFicheros.php");
 require_once (__DIR__ . "/../libs/bGeneral6.php");
 require_once (__DIR__ . "/../libs/bRafa.php");
-require_once (__DIR__ . "/../libs/config.php");
+											   
 require_once (__DIR__ . "/../vistas/formAltaServicio.php");
 
 

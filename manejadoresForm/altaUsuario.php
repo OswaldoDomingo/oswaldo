@@ -27,6 +27,11 @@ $mensajeError = "Error en el formulario : ";
 
 //PASO 1-Al cargar el formulario Recogemos los valores originales del usuario
 
+if (isset($_POST["bVolver"])) {
+    
+    header('Location: login.php');
+}
+
 if(isset($_POST['enviarRegUser'])){
     
     //Primero recogemos las obligatorias $nombre, $correo, $password
@@ -42,19 +47,24 @@ if(isset($_POST['enviarRegUser'])){
     //Valida fecha
     //Recogemos fecha si es buena, 
     $fechaNacimiento = validarFecha($_POST['fechaNacimientoRegUser'], $errores);
-    
-    $fecha_actual = strtotime(date("d-m-Y H:i:00",time()));
-    $fecha_18 = strtotime($fecha_actual."- 18 year");
-    
-    if($fecha_18 < $fechaNacimiento)
-    {
+
+    //se calcula la diferencia entre ambos timestamps y se divide por el número de segundos en un año para 
+    //obtener el número de años. Luego, se compara la edad obtenida con 18 para determinar si la persona es mayor o menor de edad.
+    $fecha_actual = time();
+    $edad = floor(($fecha_actual - $fechaNacimiento) / (60 * 60 * 24 * 365));
+
+									
+    if ($edad < 18) {
         $errores["ErrorFechaNacimiento"] = "Es imposible darse de alta si no se han cumplido 18 años";
     }
     
-    //El idioma solo puede ser una de dos opciones, castellano o ingles. Poro ahora solo sanitizo con recoge() 
+    //El idioma solo puede ser varias opciones se recogen en checkboxes 
     //Al ser no obligatorio comprobamos si el idioma ha sido asignado o o no con el if(isset)
-    if(isset($_POST["idiomaRegUser"])){
-        $idioma = recoge("idiomaRegUser"); //Hacer función que compruebe si es español o ingles
+    $idiomas = "";
+    
+    if(isset($_POST["idiomaRegUser[]"])){
+        $idiomasSeleccionados = $_POST['idiomaRegUser[]'];
+        $idiomas = implode(",", $idiomasSeleccionados);
     }
    
 
@@ -80,7 +90,7 @@ if(isset($_POST['enviarRegUser'])){
         
         $fechaAlta = date("d-m-Y H:i:s");
         
-        $datos_usuario = "$fechaAlta;$nombre;$correoValidado;$passwordValidado;$fechaNacimiento;$fotoPerfil;$idioma;$comentarios\r\n";
+        $datos_usuario = "$fechaAlta;$nombre;$correoValidado;$passwordValidado;$fechaNacimiento;$fotoPerfil;$idiomas;$comentarios\r\n";
 
         guardarAlPrincipio(__DIR__ . '/../ficheros/usuarios.txt', $datos_usuario);
         
