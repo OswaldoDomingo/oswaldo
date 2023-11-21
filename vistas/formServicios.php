@@ -22,7 +22,7 @@ cabecera("Servicios.php");
 <label for="user"  style="witdh: 50px; height:50px; position: absolute; top: 0; right: 0; padding: 5px 70px;"><?php echo $usuarioNombre; ?></label>
 
 <a href="cerrarSesion.php">
-        <img src="../imagenes/logOut.png" alt="perfilUsuario2" style="witdh: 50px; height:50px; cursor: pointer;  position: absolute; top: 0; right: 0; padding: 30px 15px;">
+        <img src="../imagenesApp/logOut.png" alt="perfilUsuario2" style="witdh: 50px; height:50px; cursor: pointer;  position: absolute; top: 0; right: 0; padding: 30px 15px;">
 </a>
 
 <form action="" method="POST" enctype="multipart/form-data">
