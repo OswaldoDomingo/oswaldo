@@ -54,4 +54,25 @@ function obtenerUsuario($correo) {
     return false;
 } 
 
+function existeUsuario($correo) {
+    // Abrir el archivo de usuarios para lectura
+    $archivoUsuarios = fopen("../ficheros/usuarios.txt", "r");
+    if ($archivoUsuarios) {
+        // Leer el archivo línea por línea
+        $lineaIndex = 0;
+        while (($linea = fgets($archivoUsuarios)) !== false) {
+            $lineaIndex++;
+            // Descomponer la línea en sus partes y comprobar si coinciden con los datos del formulario
+            $usuario = explode(';', trim($linea));
+            if ($correo === $usuario[CORREO]) {
+                return true;
+            }
+        }
+        // Cerrar el archivo si no se encuentra el usuario
+        fclose($archivoUsuarios);
+    } 
+    // Retornar falso si el usuario no es válido
+    return false;
+} 
+
 ?>

@@ -4,6 +4,7 @@ require_once(__DIR__ . "/../libs/bGeneral6.php");
 require_once(__DIR__ . "/../libs/config.php");
 require_once(__DIR__ . "/../libs/funcionesFicheros.php");
 require_once(__DIR__ . "/../libs/bGeneralOswaldo.php");
+require_once(__DIR__ . "/../libs/bRafa.php");
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -40,6 +41,11 @@ if(isset($_POST['enviarRegUser'])){
 
     $correo = cCorreo("correoRegUser", $errores);
     if($correo){$correoValidado = $_POST["correoRegUser"];}
+
+    if(existeUsuario($correo) != false)
+    {
+        $errores["CorreoYaExiste"] = "El correo introducido ya existe en el sistema. Introduzca otro";
+    }
 
     $password = cPassword("contrasenyaRegUser", $errores);
     if($password){ $passwordValidado = $_POST["contrasenyaRegUser"];}
@@ -114,6 +120,8 @@ if(isset($_POST['enviarRegUser'])){
         
     } 
     else {
+        
+        include("../vistas/formAltaUsuario.php");
         
         $mensajeError = "<br><br><br><br><div><b>" . $mensajeError . array_values($errores)[0] . "</b></div>";
         echo($mensajeError);
