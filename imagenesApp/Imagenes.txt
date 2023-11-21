@@ -1,0 +1,3 @@
+En este directorio se guardarán las imagenes genéricas usadas en la aplicación.
+
+En los subdirectorios se guardarán las imágenes de sistema de servicios y usuarios.

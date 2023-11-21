@@ -43,7 +43,7 @@ if(!isset($_COOKIE["colorFondo"]))
 {       
     $colorFondo = COLOR_BLANCO;
     $colorCambio = COLOR_NARANJA;
-    $colorImagen = "../imagenes/colorBlanco.png";
+    $colorImagen = "../imagenesApp/colorBlanco.png";
 }   
 else
 {
@@ -53,13 +53,13 @@ else
     {
         $colorFondo = COLOR_BLANCO;
         $colorCambio = COLOR_NARANJA;
-        $colorImagen = "../imagenes/colorNaranja.png";      
+        $colorImagen = "../imagenesApp/colorNaranja.png";      
     }
     else
     {
         $colorFondo = COLOR_NARANJA;
         $colorCambio = COLOR_BLANCO;
-        $colorImagen = "../imagenes/colorBlanco.png";
+        $colorImagen = "../imagenesApp/colorBlanco.png";
     }
 }
 

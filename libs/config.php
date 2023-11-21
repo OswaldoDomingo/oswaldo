@@ -9,7 +9,7 @@
      /**
       * Ruta donde almacenaremos las imágenes que nos suben los usuarios
       */
-    const RUTA_IMAGENES ="../imagenes/";
+    const RUTA_IMAGENES ="../imagenesApp/";
 
     /**
      * Array que guarda las extensiones válidas

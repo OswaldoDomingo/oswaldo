@@ -111,7 +111,7 @@ if(is_file($ruta))
                 $fotoMostrada = $rutaFotoSession;
             }
             else
-                $fotoMostrada = "../imagenes/subidaImagen.png";
+                $fotoMostrada = "../imagenesApp/subidaImagen.png";
                 
             $encontrado = true;
         }
