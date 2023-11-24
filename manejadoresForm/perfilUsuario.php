@@ -3,6 +3,9 @@
 include(__DIR__ . "/../libs/config.php");
 
 session_start();
+/* 
+Aquí es suficiente con comprobar IP, icatividad, recoger los datos y validarlos. La modificación ya la haremos cuando veamos BD
+*/
 								  
 
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 0) {
