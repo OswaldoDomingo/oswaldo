@@ -10,6 +10,9 @@ if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 0) {
      header("Location: cerrarSesion.php");
 			
  }
+/*
+Sólo inicializamos la IP en el login
+*/
 
 if (!isset($_SESSION['direccion_ip'])) {
     $_SESSION['direccion_ip'] = $_SERVER['REMOTE_ADDR'];
@@ -65,6 +68,9 @@ if (isset($_POST["bGuardar"])) {
     
     $descripcion = recoge("descripcionServicio");
     $descripcion = str_replace(PHP_EOL, "</br>", $descripcion);
+	/*
+	Lo mejor es utilizar las funciones de validación de bGeneral, las de los ejercicios. Tanto para la imagen como para el resto de los campos
+	*/
     
     if(isset ($_FILES["fotoServicio"]) && isset ($_FILES["fotoServicio"]["name"]) && $_FILES["fotoServicio"]["name"] != "")
     {
