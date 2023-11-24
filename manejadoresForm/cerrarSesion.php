@@ -1,6 +1,13 @@
 <?php
 
 session_start();
+/***
+Es suficiente con
+     session_start();
+session_unset();     
+session_destroy();   
+header("Location: login.php");
+*/
 
 if (!isset($_SESSION['autenticado']) || $_SESSION['autenticado'] == 0) {
      // Redirigir al usuario a la página de login si no está autenticado
